@@ -1,0 +1,19 @@
+overwrite: true
+schema: "be/src/interface/graphql/typedefs/**/*.graphql"
+documents: "fe/src/graphql/**/*.graphql"
+generates:
+  be/src/interface/graphql/generated/schema.graphql:
+    plugins:
+      - schema-ast
+  be/src/interface/graphql/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+  fe/src/graphql/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false

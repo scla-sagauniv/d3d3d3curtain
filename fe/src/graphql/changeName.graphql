@@ -1,0 +1,6 @@
+mutation changeName($name: String!) {
+  changeName(name: $name) {
+    msg
+    name
+  }
+}
