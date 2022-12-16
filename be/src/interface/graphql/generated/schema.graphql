@@ -1,0 +1,12 @@
+type Greet {
+  msg: String!
+  name: String!
+}
+
+type Mutation {
+  changeName(name: String!): Greet!
+}
+
+type Query {
+  greet: Greet!
+}
