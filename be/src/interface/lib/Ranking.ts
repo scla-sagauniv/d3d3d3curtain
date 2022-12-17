@@ -8,7 +8,6 @@ export function getRanking() {
   const rank: Result[] = [];
   for (let i = 0; i < 3; i++) {
     rank.push(resultCopy[i]);
-    console.log(rank);
   }
   return rank;
 }
