@@ -1,9 +1,15 @@
 {
-  "extends": "./node_modules/gts/tsconfig-google.json",
+  // "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "build",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "target": "es2018",
+    "module": "commonjs",
+    "lib": ["es2018", "esnext.asynciterable"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*.ts", "test/**/*.ts"]
+  // "include": ["src/**/*.ts", "test/**/*.ts", "src/**/*.graphql"]
+  "include": ["src"]
 }
