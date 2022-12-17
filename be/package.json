@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "main": "build/src/index.js",
-  "types": "build/src/index.d.ts",
+  "types": "module",
   "files": [
     "build/src"
   ],
@@ -11,6 +11,7 @@
   "keywords": [],
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc && cp src/interface/graphql/generated/schema.graphql build/src/interface/graphql/generated/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "gts lint",
     "clean": "gts clean",

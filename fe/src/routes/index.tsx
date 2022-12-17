@@ -10,7 +10,7 @@ export default function Home() {
         <div class="flex flex-col mx-auto mt-11 w-36 h-auto justify-center">
           <Home_Button name="ゲームスタート" url="/question" />
           <Home_Button name="フリーモード" url="" />
-          <Home_Button name="ランキング" url="" />
+          <Home_Button name="ランキング" url="/ranking" />
         </div>
       </div>
     </main>

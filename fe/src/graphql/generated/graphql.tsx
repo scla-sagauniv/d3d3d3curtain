@@ -38,6 +38,7 @@ export type Query = {
   __typename?: 'Query';
   greet: Greet;
   ranking?: Maybe<Array<Result>>;
+  results?: Maybe<Array<Result>>;
   target: Target;
 };
 

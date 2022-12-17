@@ -1,8 +1,10 @@
 import {QueryResolvers} from '../generated/graphql';
-import greet from '../../db/store';
-import {CreateTarget} from '../../lib/Target';
+import greet from '../../db/greetStore';
+import result from '../../db/resultStore';
+import {getRanking} from '../../lib/Ranking';
 
 export const Query: QueryResolvers = {
   greet: () => greet.getGreet(),
-  target: () => CreateTarget(),
+  results: () => result.getAllresult(),
+  ranking: () => getRanking(),
 };
