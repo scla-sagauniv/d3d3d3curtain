@@ -1,4 +1,13 @@
+import { onMount } from "solid-js";
+
 export default function Question() {
+  const sleep = async (second: number) => {
+    await new Promise((second) => setTimeout(second, 3000));
+  };
+  onMount(async () => {
+    await sleep(3);
+    window.location.href = "/game";
+  });
   return (
     <>
       <main class="mx-auto w-full h-full bg-bg_yellow">

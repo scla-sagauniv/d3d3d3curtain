@@ -15,7 +15,7 @@ export default function Detection(props: Props) {
 
   const onResults = (results: Results) => {
     const canvasCtx = canvasRef!.getContext("2d")!;
-    drawCanvas(canvasCtx, results, props.setAngle!);
+    drawCanvas(canvasCtx, results, props.setAngle);
   };
 
   createEffect(async () => {

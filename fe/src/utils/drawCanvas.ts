@@ -14,7 +14,7 @@ import { Setter } from "solid-js";
 export const drawCanvas = (
   ctx: CanvasRenderingContext2D,
   results: Results,
-  setAngle: Setter<number>
+  setAngle: Setter<number> | undefined
 ) => {
   const width = ctx.canvas.width;
   const height = ctx.canvas.height;
@@ -47,7 +47,9 @@ export const drawCanvas = (
       results.multiHandLandmarks[0][12]
     );
     console.log(res);
-    setAngle(Math.trunc(res * 100) / 100);
+    if (setAngle) {
+      setAngle(Math.trunc(res * 100) / 100);
+    }
   }
   ctx.restore();
 };
