@@ -37,8 +37,16 @@ export default function Detection(props: Props) {
       });
       camera.start();
     }
-  });
 
+    hands.setOptions({
+      maxNumHands: 1,
+      modelComplexity: 1,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
+    });
+
+    hands.onResults(onResults);
+  });
   const capture = () => {
     if (props.setCanvasUrl) {
       props.setCanvasUrl!(canvasRef!.toDataURL("image/jpeg"));
