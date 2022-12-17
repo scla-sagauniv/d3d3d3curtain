@@ -1,10 +1,11 @@
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createSignal, Setter } from "solid-js";
 import { Camera } from "@mediapipe/camera_utils";
 import { Hands, Results } from "@mediapipe/hands";
 import { drawCanvas } from "~/utils/drawCanvas";
 
 type Props = {
   capture: boolean;
+  setAngle: Setter<number> | undefined;
 };
 
 export default function Detection(props: Props) {
@@ -14,7 +15,7 @@ export default function Detection(props: Props) {
 
   const onResults = (results: Results) => {
     const canvasCtx = canvasRef!.getContext("2d")!;
-    drawCanvas(canvasCtx, results);
+    drawCanvas(canvasCtx, results, props.setAngle!);
   };
 
   createEffect(async () => {
@@ -69,8 +70,9 @@ export default function Detection(props: Props) {
         muted
         width="300"
         height="200"
+        style={{ display: "none" }}
       ></video>
-      <canvas ref={canvasRef} style={{ width: "300px", height: "255px" }} />
+      <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
     </>
   );
 }
