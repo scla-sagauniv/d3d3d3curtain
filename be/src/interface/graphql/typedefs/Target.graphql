@@ -1,10 +1,12 @@
 type Target {
   trigFunc: TrigFunc
-  calcRes: Float
   angle: Float!
 }
-enum TrigFunc {
-    sin
-    cos
-    tan
+type TrigFunc {
+  sin: String!
+  cos: String!
+  tan: String!
+  calcsin: Float!
+  calcCos: Float!
+  calcTan: Float!
 }

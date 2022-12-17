@@ -55,15 +55,26 @@ export type Result = {
 export type Target = {
   __typename?: 'Target';
   angle: Scalars['Float'];
-  calcRes?: Maybe<Scalars['Float']>;
   trigFunc?: Maybe<TrigFunc>;
 };
 
+<<<<<<< Updated upstream
 export enum TrigFunc {
   Cos = 'cos',
   Sin = 'sin',
   Tan = 'tan',
 }
+=======
+export type TrigFunc = {
+  __typename?: 'TrigFunc';
+  calcCos: Scalars['Float'];
+  calcTan: Scalars['Float'];
+  calcsin: Scalars['Float'];
+  cos: Scalars['String'];
+  sin: Scalars['String'];
+  tan: Scalars['String'];
+};
+>>>>>>> Stashed changes
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
@@ -180,7 +191,7 @@ export type ResolversTypes = {
   Result: ResolverTypeWrapper<Result>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Target: ResolverTypeWrapper<Target>;
-  TrigFunc: TrigFunc;
+  TrigFunc: ResolverTypeWrapper<TrigFunc>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -193,6 +204,7 @@ export type ResolversParentTypes = {
   Result: Result;
   String: Scalars['String'];
   Target: Target;
+  TrigFunc: TrigFunc;
 };
 
 export type GreetResolvers<
@@ -232,6 +244,14 @@ export type QueryResolvers<
     ParentType,
     ContextType
   >;
+<<<<<<< Updated upstream
+=======
+  results?: Resolver<
+    Maybe<Array<ResolversTypes['Result']>>,
+    ParentType,
+    ContextType
+  >;
+>>>>>>> Stashed changes
   target?: Resolver<ResolversTypes['Target'], ParentType, ContextType>;
 };
 
@@ -248,12 +268,31 @@ export type TargetResolvers<
   ParentType extends ResolversParentTypes['Target'] = ResolversParentTypes['Target']
 > = {
   angle?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+<<<<<<< Updated upstream
   calcRes?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+=======
+>>>>>>> Stashed changes
   trigFunc?: Resolver<
     Maybe<ResolversTypes['TrigFunc']>,
     ParentType,
     ContextType
   >;
+<<<<<<< Updated upstream
+=======
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TrigFuncResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['TrigFunc'] = ResolversParentTypes['TrigFunc']
+> = {
+  calcCos?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  calcTan?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  calcsin?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  cos?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  sin?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  tan?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+>>>>>>> Stashed changes
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -263,4 +302,5 @@ export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   Result?: ResultResolvers<ContextType>;
   Target?: TargetResolvers<ContextType>;
+  TrigFunc?: TrigFuncResolvers<ContextType>;
 };
