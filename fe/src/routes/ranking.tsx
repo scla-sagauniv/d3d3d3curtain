@@ -4,11 +4,13 @@ import { createSignal, For } from "solid-js";
 import Side_Button from "~/components/side_Button";
 
 export default function ranking() {
-  const [cats, setCats] = createSignal([
-    { id: "J---aiyznGQ", name: "hoge" },
-    { id: "z_AbfPXTKms", name: "hoge" },
-    { id: "OUtn3pvWmpg", name: "hoge" },
+  const [ranks, setranks] = createSignal([
+    { userName: "hoge-ﾀ", score: 0.064 },
+    { userName: "fizz", score: 0.078 },
+    { userName: "buzz", score: 0.1 },
   ]);
+
+  const hoge = ["mt-8", ""];
 
   return (
     <main class="mx-auto w-full h-full bg-bg_yellow">
@@ -17,24 +19,27 @@ export default function ranking() {
           誤差
         </p>
         {/* ランキングの要素を生成 */}
-        <div class="flex flex-col mx-auto w-50 h-auto justify-center">
-          <For each={cats()}>
-            {(cat, i) => (
-              <p class="text-font_blue not-italic font-normal text-5xl mt-16 text-left">
-                {i() + 1}位: {cat.name}°
-              </p>
-            )}
-          </For>
+        <div class="flex flex-col mx-auto w-3/4x h-auto justify-center">
+          <div class="text-font_blue not-italic font-normal text-5xl text-left grid grid-cols-3 grid-rows-3">
+            <For each={ranks()}>
+              {(rank, i) => (
+                <>
+                  <div class="mt-8 hover:">{i() + 1}位:</div>
+                  <div class="mt-8">{rank.score}°</div>
+                  <div class="mt-8">{rank.userName}</div>
+                </>
+              )}
+            </For>
+          </div>
         </div>
       </div>
-      {/* ------(../components/side_Button)　要チェック！！------- */}
-      <Side_Button
-        name="戻る"
-        url="/"
-        posi_x="right"
-        posi_y="bottom"
-        corner="tl"
-      ></Side_Button>
+      <a
+        class={`bg-btn_blue font-semibold text-font_blue text-xl
+      py-6 px-10 rounded-tl-2xl absolute bottom-0 right-0 z-10`}
+        href="/"
+      >
+        <button class="w-full h-full">戻る</button>
+      </a>
     </main>
   );
 }

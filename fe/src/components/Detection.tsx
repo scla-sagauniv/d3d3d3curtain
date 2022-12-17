@@ -1,4 +1,4 @@
-import { createEffect, createSignal, Setter } from "solid-js";
+import { createEffect, Setter } from "solid-js";
 import { Camera } from "@mediapipe/camera_utils";
 import { Hands, Results } from "@mediapipe/hands";
 import { drawCanvas } from "~/utils/drawCanvas";
@@ -25,15 +25,6 @@ export default function Detection(props: Props) {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
       },
     });
-
-    hands.setOptions({
-      maxNumHands: 1,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5,
-    });
-
-    hands.onResults(onResults);
 
     if (videoRef) {
       camera = new Camera(videoRef, {
