@@ -1,4 +1,4 @@
-import greet from '../../db/store';
+import greet from '../../db/greetStore';
 import {MutationResolvers} from '../generated/graphql';
 
 export const Mutation: MutationResolvers = {
