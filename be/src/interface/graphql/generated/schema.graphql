@@ -4,9 +4,28 @@ type Greet {
 }
 
 type Mutation {
+  addResult(score: Float!): Result!
   changeName(name: String!): Greet!
 }
 
 type Query {
   greet: Greet!
+  ranking: [Result!]
+  target: Target!
+}
+
+type Result {
+  score: Float!
+}
+
+type Target {
+  angle: Float!
+  calcRes: Float
+  trigFunc: TrigFunc
+}
+
+enum TrigFunc {
+  cos
+  sin
+  tan
 }

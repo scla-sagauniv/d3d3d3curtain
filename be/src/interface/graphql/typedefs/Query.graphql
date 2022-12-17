@@ -1,3 +1,5 @@
 type Query {
   greet: Greet!
+  target: Target!
+  ranking: [Result!]
 }

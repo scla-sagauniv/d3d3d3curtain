@@ -20,7 +20,13 @@ export type Greet = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addResult: Result;
   changeName: Greet;
+};
+
+
+export type MutationAddResultArgs = {
+  score: Scalars['Float'];
 };
 
 
@@ -31,7 +37,27 @@ export type MutationChangeNameArgs = {
 export type Query = {
   __typename?: 'Query';
   greet: Greet;
+  ranking?: Maybe<Array<Result>>;
+  target: Target;
 };
+
+export type Result = {
+  __typename?: 'Result';
+  score: Scalars['Float'];
+};
+
+export type Target = {
+  __typename?: 'Target';
+  angle: Scalars['Float'];
+  calcRes?: Maybe<Scalars['Float']>;
+  trigFunc?: Maybe<TrigFunc>;
+};
+
+export enum TrigFunc {
+  Cos = 'cos',
+  Sin = 'sin',
+  Tan = 'tan'
+}
 
 export type ChangeNameMutationVariables = Exact<{
   name: Scalars['String'];
