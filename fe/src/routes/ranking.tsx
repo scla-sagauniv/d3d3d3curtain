@@ -27,6 +27,7 @@ export default function ranking() {
           </For>
         </div>
       </div>
+      {/* ------(../components/side_Button)　要チェック！！------- */}
       <Side_Button
         name="戻る"
         url="/"
