@@ -21,5 +21,3 @@ export default function Side_Button(props: {
     </a>
   );
 }
-
-function Btn_posi() {}
