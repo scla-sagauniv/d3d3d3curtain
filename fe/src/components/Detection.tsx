@@ -3,9 +3,14 @@ import { Camera } from "@mediapipe/camera_utils";
 import { Hands, Results } from "@mediapipe/hands";
 import { drawCanvas } from "~/utils/drawCanvas";
 
-export default function Detection() {
+type Props = {
+  capture: boolean;
+};
+
+export default function Detection(props: Props) {
   let videoRef: HTMLVideoElement | undefined = undefined;
   let canvasRef: HTMLCanvasElement | undefined = undefined;
+  let stream: MediaStream | undefined = undefined;
 
   const onResults = (results: Results) => {
     const canvasCtx = canvasRef!.getContext("2d")!;
@@ -13,7 +18,7 @@ export default function Detection() {
   };
 
   createEffect(async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    stream = await navigator.mediaDevices.getUserMedia({ video: true });
     if (videoRef) {
       videoRef.srcObject = stream;
     }
@@ -36,12 +41,22 @@ export default function Detection() {
     if (videoRef) {
       const camera = new Camera(videoRef, {
         onFrame: async () => {
-          await hands.send({ image: videoRef! });
+          await hands!.send({ image: videoRef! });
         },
         width: 300,
         height: 255,
       });
       camera.start();
+    }
+  });
+
+  const capture = () => {
+    stream!.getTracks().forEach((track) => track.stop());
+    videoRef = undefined;
+  };
+  createEffect(() => {
+    if (props.capture) {
+      capture();
     }
   });
 
