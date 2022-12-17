@@ -1,31 +1,18 @@
-import { A } from "solid-start";
-import Counter from "~/components/Counter";
+import Home_Button from "../components/Home_Button";
 
 export default function Home() {
   return (
-    <main class="text-center mx-auto text-gray-700 p-4">
-      <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
-        Hello world!
-      </h1>
-      <Counter />
-      <p class="mt-8">
-        Visit{" "}
-        <a
-          href="https://solidjs.com"
-          target="_blank"
-          class="text-sky-600 hover:underline"
-        >
-          solidjs.com
-        </a>{" "}
-        to learn how to build Solid apps.
-      </p>
-      <p class="my-4">
-        <span>Home</span>
-        {" - "}
-        <A href="/about" class="text-sky-600 hover:underline">
-          About Page
-        </A>{" "}
-      </p>
+    <main class="mx-auto w-full h-full bg-bg_yellow">
+      <div class="flex justify-center flex-col">
+        <p class="text-font_blue not-italic font-normal text-5xl mt-32 text-center">
+          ピースの角度は何十度？？
+        </p>
+        <div class="flex flex-col mx-auto mt-11 w-36 h-auto justify-center">
+          <Home_Button name="ゲームスタート" url="/question" />
+          <Home_Button name="フリーモード" url="" />
+          <Home_Button name="ランキング" url="" />
+        </div>
+      </div>
     </main>
   );
 }
