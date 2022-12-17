@@ -1,6 +1,7 @@
 import Home_Button from "../components/Home_Button";
 import { render } from "solid-js/web";
 import { createSignal, For } from "solid-js";
+import Side_Button from "~/components/side_Button";
 
 export default function ranking() {
   const [cats, setCats] = createSignal([
@@ -26,6 +27,12 @@ export default function ranking() {
           </For>
         </div>
       </div>
+      <Side_Button
+        name="戻る"
+        url="/"
+        posi_x="right"
+        posi_y="bottom"
+      ></Side_Button>
     </main>
   );
 }
