@@ -34,8 +34,8 @@ export default function Side_Button(props: {
 
   return (
     <a
-      class={`bg-btn_blue font-semibold text-font_blue text-xl 
-      py-6 px-10 mt-8 rounded-${coord}-2xl absolute ${props.posi_x}-0 ${props.posi_y}-0`}
+      class={`bg-btn_blue font-semibold text-font_blue text-xl py-6 px-10 
+      mt-8 rounded-${coord}-2xl absolute ${props.posi_x}-0 ${props.posi_y}-0`}
       href={props.url}
     >
       <button class="w-full h-full">{props.name}</button>
