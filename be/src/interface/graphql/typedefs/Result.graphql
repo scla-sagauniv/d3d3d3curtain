@@ -1,3 +1,8 @@
 type Result {
     score: Float!
+    user:User!
+    target:Target!
+}
+type User {
+    name: String!
 }

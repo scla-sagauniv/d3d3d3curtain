@@ -45,6 +45,8 @@ export type Query = {
 export type Result = {
   __typename?: 'Result';
   score: Scalars['Float'];
+  target: Target;
+  user: User;
 };
 
 export type Target = {
@@ -59,6 +61,11 @@ export enum TrigFunc {
   Sin = 'sin',
   Tan = 'tan'
 }
+
+export type User = {
+  __typename?: 'User';
+  name: Scalars['String'];
+};
 
 export type ChangeNameMutationVariables = Exact<{
   name: Scalars['String'];

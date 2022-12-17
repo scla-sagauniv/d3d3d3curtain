@@ -17,6 +17,8 @@ type Query {
 
 type Result {
   score: Float!
+  target: Target!
+  user: User!
 }
 
 type Target {
@@ -29,4 +31,8 @@ enum TrigFunc {
   cos
   sin
   tan
+}
+
+type User {
+  name: String!
 }
