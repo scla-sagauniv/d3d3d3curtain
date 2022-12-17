@@ -33,6 +33,7 @@ export default function ranking() {
         url="/"
         posi_x="right"
         posi_y="bottom"
+        corner="tl"
       ></Side_Button>
     </main>
   );
