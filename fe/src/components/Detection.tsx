@@ -6,12 +6,13 @@ import { drawCanvas } from "~/utils/drawCanvas";
 type Props = {
   capture: boolean;
   setAngle: Setter<number> | undefined;
+  setCanvasUrl: Setter<string> | undefined;
 };
 
 export default function Detection(props: Props) {
   let videoRef: HTMLVideoElement | undefined = undefined;
   let canvasRef: HTMLCanvasElement | undefined = undefined;
-  let stream: MediaStream | undefined = undefined;
+  let camera: Camera | undefined = undefined;
 
   const onResults = (results: Results) => {
     const canvasCtx = canvasRef!.getContext("2d")!;
@@ -19,11 +20,6 @@ export default function Detection(props: Props) {
   };
 
   createEffect(async () => {
-    stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    if (videoRef) {
-      videoRef.srcObject = stream;
-    }
-
     const hands = new Hands({
       locateFile: (file) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
@@ -40,19 +36,24 @@ export default function Detection(props: Props) {
     hands.onResults(onResults);
 
     if (videoRef) {
-      const camera = new Camera(videoRef, {
+      camera = new Camera(videoRef, {
         onFrame: async () => {
           await hands!.send({ image: videoRef! });
         },
-        width: 300,
-        height: 255,
+        facingMode: "user",
+        width: 1920,
+        height: 1080,
       });
       camera.start();
     }
   });
 
   const capture = () => {
-    stream!.getTracks().forEach((track) => track.stop());
+    if (props.setCanvasUrl) {
+      props.setCanvasUrl!(canvasRef!.toDataURL("image/jpeg"));
+      console.log(canvasRef!.toDataURL("image/jpeg"));
+    }
+    camera!.stop();
     videoRef = undefined;
   };
   createEffect(() => {
@@ -68,11 +69,14 @@ export default function Detection(props: Props) {
         autoplay
         playsinline
         muted
-        width="300"
-        height="200"
         style={{ display: "none" }}
       ></video>
-      <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
+      <canvas
+        ref={canvasRef}
+        width={1920}
+        height={1080}
+        style={{ width: "100%", height: "100%", "object-fit": "cover" }}
+      />
     </>
   );
 }

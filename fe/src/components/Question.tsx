@@ -1,12 +1,17 @@
-import { onMount } from "solid-js";
+import { onMount, Setter } from "solid-js";
 
-export default function Question() {
+type Props = {
+  phase: number;
+  setPhase: Setter<number>;
+};
+
+export default function Question(props: Props) {
   const sleep = async (second: number) => {
     await new Promise((second) => setTimeout(second, 3000));
   };
   onMount(async () => {
     await sleep(3);
-    window.location.href = "/game";
+    props.setPhase(props.phase + 1);
   });
   return (
     <>

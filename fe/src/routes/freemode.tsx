@@ -19,7 +19,11 @@ export default function FreeMode() {
   return (
     <>
       <main class="mx-auto w-full h-full bg-white">
-        <Detection capture={false} setAngle={setAngle}></Detection>
+        <Detection
+          capture={false}
+          setAngle={setAngle}
+          setCanvasUrl={undefined}
+        ></Detection>
         <a class={`${returnButtonClasses.join(" ")}`} href="/">
           <button class="w-full h-full">戻る</button>
         </a>

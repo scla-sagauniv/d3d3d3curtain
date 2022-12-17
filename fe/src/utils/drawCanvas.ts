@@ -16,8 +16,10 @@ export const drawCanvas = (
   results: Results,
   setAngle: Setter<number> | undefined
 ) => {
-  const width = ctx.canvas.width;
-  const height = ctx.canvas.height;
+  // const width = ctx.canvas.width;
+  // const height = ctx.canvas.height;
+  const width = 1920;
+  const height = 1080;
 
   ctx.save();
   ctx.clearRect(0, 0, width, height);
@@ -32,12 +34,12 @@ export const drawCanvas = (
     for (const landmarks of results.multiHandLandmarks) {
       drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
         color: "#00FF00",
-        lineWidth: 1,
+        lineWidth: 10,
       });
       drawLandmarks(ctx, landmarks, {
         color: "#FF0000",
-        lineWidth: 1,
-        radius: 2,
+        lineWidth: 10,
+        radius: 10,
       });
     }
     const res = calcAngle(
