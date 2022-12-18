@@ -1,7 +1,13 @@
 query getTarget {
   target {
     angle
-    calcRes
-    trigFunc
+    trigFunc {
+      sin
+      cos
+      tan
+      calcsin
+      calcCos
+      calcTan
+    }
   }
 }

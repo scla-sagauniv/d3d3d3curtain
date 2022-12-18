@@ -1,5 +1,19 @@
-mutation addResult($score: Float!) {
-  addResult(score: $score) {
+mutation addResult($resultInput: ResultInput!) {
+  addResult(resultinput: $resultInput) {
     score
+    target {
+      angle
+      trigFunc {
+        sin
+        cos
+        tan
+        calcsin
+        calcCos
+        calcTan
+      }
+    }
+    user {
+      name
+    }
   }
 }
