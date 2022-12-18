@@ -1,8 +1,10 @@
 import { onMount, Setter } from "solid-js";
+import { Target } from "~/graphql/generated/graphql";
 
 type Props = {
   phase: number;
   setPhase: Setter<number>;
+  target: Target;
 };
 
 export default function Question(props: Props) {
@@ -21,7 +23,7 @@ export default function Question(props: Props) {
             目指せ！！
           </p>
           <p class="text-font_blue not-italic font-normal text-5xl mt-32 text-center">
-            hogehoge！！
+            {props.target.angle}°
           </p>
         </div>
       </main>
