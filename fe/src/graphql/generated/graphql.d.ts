@@ -58,15 +58,17 @@ export type ResultInput = {
 export type Target = {
   __typename?: 'Target';
   angle: Scalars['Float'];
-  calcRes?: Maybe<Scalars['Float']>;
   trigFunc?: Maybe<TrigFunc>;
 };
 
+<<<<<<< HEAD
 export type TargetInput = {
   angle: Scalars['Float'];
   target?: InputMaybe<TrigFuncInput>;
 };
 
+=======
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
 export type TrigFunc = {
   __typename?: 'TrigFunc';
   calcCos: Scalars['Float'];
@@ -76,6 +78,7 @@ export type TrigFunc = {
   sin: Scalars['String'];
   tan: Scalars['String'];
 };
+<<<<<<< HEAD
 
 export type TrigFuncInput = {
   calcCos: Scalars['Float'];
@@ -94,6 +97,8 @@ export type User = {
 export type UserInput = {
   name: Scalars['String'];
 };
+=======
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
 
 export type AddResultMutationVariables = Exact<{
   score: Scalars['Float'];

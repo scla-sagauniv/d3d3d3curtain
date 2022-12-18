@@ -1,6 +1,5 @@
 type Target {
   trigFunc: TrigFunc
-  calcRes: Float
   angle: Float!
 }
 type TrigFunc {
