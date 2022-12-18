@@ -21,12 +21,14 @@ type Result {
 
 type Target {
   angle: Float!
-  calcRes: Float
   trigFunc: TrigFunc
 }
 
-enum TrigFunc {
-  cos
-  sin
-  tan
+type TrigFunc {
+  calcCos: Float!
+  calcTan: Float!
+  calcsin: Float!
+  cos: String!
+  sin: String!
+  tan: String!
 }

@@ -50,15 +50,18 @@ export type Result = {
 export type Target = {
   __typename?: 'Target';
   angle: Scalars['Float'];
-  calcRes?: Maybe<Scalars['Float']>;
   trigFunc?: Maybe<TrigFunc>;
 };
 
-export enum TrigFunc {
-  Cos = 'cos',
-  Sin = 'sin',
-  Tan = 'tan'
-}
+export type TrigFunc = {
+  __typename?: 'TrigFunc';
+  calcCos: Scalars['Float'];
+  calcTan: Scalars['Float'];
+  calcsin: Scalars['Float'];
+  cos: Scalars['String'];
+  sin: Scalars['String'];
+  tan: Scalars['String'];
+};
 
 export type AddResultMutationVariables = Exact<{
   score: Scalars['Float'];
