@@ -33,7 +33,7 @@ export type Mutation = {
 };
 
 export type MutationAddResultArgs = {
-  score: Scalars['Float'];
+  resultinput: ResultInput;
 };
 
 export type MutationChangeNameArgs = {
@@ -55,6 +55,12 @@ export type Result = {
   user: User;
 };
 
+export type ResultInput = {
+  score: Scalars['Float'];
+  target: TargetInput;
+  user: UserInput;
+};
+
 export type Target = {
   __typename?: 'Target';
   angle: Scalars['Float'];
@@ -62,14 +68,36 @@ export type Target = {
   trigFunc?: Maybe<TrigFunc>;
 };
 
-export enum TrigFunc {
-  Cos = 'cos',
-  Sin = 'sin',
-  Tan = 'tan',
-}
+export type TargetInput = {
+  angle: Scalars['Float'];
+  target?: InputMaybe<TrigFuncInput>;
+};
+
+export type TrigFunc = {
+  __typename?: 'TrigFunc';
+  calcCos: Scalars['Float'];
+  calcTan: Scalars['Float'];
+  calcsin: Scalars['Float'];
+  cos: Scalars['String'];
+  sin: Scalars['String'];
+  tan: Scalars['String'];
+};
+
+export type TrigFuncInput = {
+  calcCos: Scalars['Float'];
+  calcTan: Scalars['Float'];
+  calcsin: Scalars['Float'];
+  cos: Scalars['String'];
+  sin: Scalars['String'];
+  tan: Scalars['String'];
+};
 
 export type User = {
   __typename?: 'User';
+  name: Scalars['String'];
+};
+
+export type UserInput = {
   name: Scalars['String'];
 };
 
@@ -186,10 +214,14 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   Result: ResolverTypeWrapper<Result>;
+  ResultInput: ResultInput;
   String: ResolverTypeWrapper<Scalars['String']>;
   Target: ResolverTypeWrapper<Target>;
-  TrigFunc: TrigFunc;
+  TargetInput: TargetInput;
+  TrigFunc: ResolverTypeWrapper<TrigFunc>;
+  TrigFuncInput: TrigFuncInput;
   User: ResolverTypeWrapper<User>;
+  UserInput: UserInput;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -200,9 +232,14 @@ export type ResolversParentTypes = {
   Mutation: {};
   Query: {};
   Result: Result;
+  ResultInput: ResultInput;
   String: Scalars['String'];
   Target: Target;
+  TargetInput: TargetInput;
+  TrigFunc: TrigFunc;
+  TrigFuncInput: TrigFuncInput;
   User: User;
+  UserInput: UserInput;
 };
 
 export type GreetResolvers<
@@ -222,7 +259,7 @@ export type MutationResolvers<
     ResolversTypes['Result'],
     ParentType,
     ContextType,
-    RequireFields<MutationAddResultArgs, 'score'>
+    RequireFields<MutationAddResultArgs, 'resultinput'>
   >;
   changeName?: Resolver<
     ResolversTypes['Greet'],
@@ -274,6 +311,19 @@ export type TargetResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type TrigFuncResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['TrigFunc'] = ResolversParentTypes['TrigFunc']
+> = {
+  calcCos?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  calcTan?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  calcsin?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  cos?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  sin?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  tan?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type UserResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']
@@ -288,5 +338,6 @@ export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   Result?: ResultResolvers<ContextType>;
   Target?: TargetResolvers<ContextType>;
+  TrigFunc?: TrigFuncResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };

@@ -4,7 +4,7 @@ type Greet {
 }
 
 type Mutation {
-  addResult(score: Float!): Result!
+  addResult(resultinput: ResultInput!): Result!
   changeName(name: String!): Greet!
 }
 
@@ -21,18 +21,45 @@ type Result {
   user: User!
 }
 
+input ResultInput {
+  score: Float!
+  target: TargetInput!
+  user: UserInput!
+}
+
 type Target {
   angle: Float!
   calcRes: Float
   trigFunc: TrigFunc
 }
 
-enum TrigFunc {
-  cos
-  sin
-  tan
+input TargetInput {
+  angle: Float!
+  target: TrigFuncInput
+}
+
+type TrigFunc {
+  calcCos: Float!
+  calcTan: Float!
+  calcsin: Float!
+  cos: String!
+  sin: String!
+  tan: String!
+}
+
+input TrigFuncInput {
+  calcCos: Float!
+  calcTan: Float!
+  calcsin: Float!
+  cos: String!
+  sin: String!
+  tan: String!
 }
 
 type User {
+  name: String!
+}
+
+input UserInput {
   name: String!
 }
