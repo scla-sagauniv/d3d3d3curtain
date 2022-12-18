@@ -1,7 +1,7 @@
 import { createEffect, createSignal, Match, Switch } from "solid-js";
 import PlayWindow from "~/components/PlayWindow";
-import Question from "~/components/question";
-import Result from "~/components/result";
+import Question from "~/components/Question";
+import Result from "~/components/Result";
 import { gql } from "@solid-primitives/graphql";
 import { newQuery } from "~/utils/graphqlClient";
 import {
