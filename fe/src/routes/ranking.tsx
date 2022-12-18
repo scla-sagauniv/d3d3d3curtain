@@ -1,14 +1,34 @@
 import Home_Button from "../components/Home_Button";
 import { render } from "solid-js/web";
-import { createSignal, For } from "solid-js";
+import { createEffect, createSignal, For } from "solid-js";
 import Side_Button from "~/components/side_Button";
+import { GetRankingQuery, Result } from "~/graphql/generated/graphql";
+import { gql } from "@solid-primitives/graphql";
+import { newQuery } from "~/utils/graphqlClient";
 
+const GetRankingQueryDocument = gql`
+  query Query {
+    ranking {
+      score
+    }
+  }
+`;
 export default function ranking() {
-  const [ranks, setranks] = createSignal([
+  const [ranks, setRanks] = createSignal([
     { userName: "hoge-ﾀ", score: 0.064 },
     { userName: "fizz", score: 0.078 },
     { userName: "buzz", score: 0.1 },
   ]);
+  const [rankingData] = newQuery<GetRankingQuery>(GetRankingQueryDocument);
+  createEffect(() => {
+    if (rankingData()) {
+      setRanks([
+        { userName: "hoge-ﾀ", score: rankingData()!.ranking![0].score },
+        { userName: "fizz", score: rankingData()!.ranking![1].score },
+        { userName: "buzz", score: rankingData()!.ranking![2].score },
+      ]);
+    }
+  });
 
   const hoge = ["mt-8", ""];
 
