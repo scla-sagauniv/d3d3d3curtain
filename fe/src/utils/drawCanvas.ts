@@ -4,15 +4,22 @@ import {
   Results,
   NormalizedLandmark,
 } from "@mediapipe/hands";
+import { Setter } from "solid-js";
 
 /**
  * cnavasに描画する
  * @param ctx canvas context
  * @param results 手の検出結果
  */
-export const drawCanvas = (ctx: CanvasRenderingContext2D, results: Results) => {
-  const width = ctx.canvas.width;
-  const height = ctx.canvas.height;
+export const drawCanvas = (
+  ctx: CanvasRenderingContext2D,
+  results: Results,
+  setAngle: Setter<number> | undefined
+) => {
+  // const width = ctx.canvas.width;
+  // const height = ctx.canvas.height;
+  const width = 1920;
+  const height = 1080;
 
   ctx.save();
   ctx.clearRect(0, 0, width, height);
@@ -27,22 +34,24 @@ export const drawCanvas = (ctx: CanvasRenderingContext2D, results: Results) => {
     for (const landmarks of results.multiHandLandmarks) {
       drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
         color: "#00FF00",
-        lineWidth: 1,
+        lineWidth: 10,
       });
       drawLandmarks(ctx, landmarks, {
         color: "#FF0000",
-        lineWidth: 1,
-        radius: 2,
+        lineWidth: 10,
+        radius: 10,
       });
     }
-    console.log(
-      calcAngle(
-        results.multiHandLandmarks[0][5],
-        results.multiHandLandmarks[0][8],
-        results.multiHandLandmarks[0][9],
-        results.multiHandLandmarks[0][12]
-      )
+    const res = calcAngle(
+      results.multiHandLandmarks[0][5],
+      results.multiHandLandmarks[0][8],
+      results.multiHandLandmarks[0][9],
+      results.multiHandLandmarks[0][12]
     );
+    console.log(res);
+    if (setAngle) {
+      setAngle(Math.trunc(res * 100) / 100);
+    }
   }
   ctx.restore();
 };

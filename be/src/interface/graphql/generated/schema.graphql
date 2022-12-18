@@ -23,7 +23,6 @@ type Result {
 
 type Target {
   angle: Float!
-  calcRes: Float
   trigFunc: TrigFunc
 }
 

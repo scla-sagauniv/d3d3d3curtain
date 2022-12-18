@@ -1,0 +1,5 @@
+query getRanking {
+  ranking {
+    score
+  }
+}

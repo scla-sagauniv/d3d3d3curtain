@@ -52,15 +52,25 @@ export type Result = {
 export type Target = {
   __typename?: 'Target';
   angle: Scalars['Float'];
-  calcRes?: Maybe<Scalars['Float']>;
   trigFunc?: Maybe<TrigFunc>;
 };
 
-export enum TrigFunc {
-  Cos = 'cos',
-  Sin = 'sin',
-  Tan = 'tan'
-}
+export type TrigFunc = {
+  __typename?: 'TrigFunc';
+  calcCos: Scalars['Float'];
+  calcTan: Scalars['Float'];
+  calcsin: Scalars['Float'];
+  cos: Scalars['String'];
+  sin: Scalars['String'];
+  tan: Scalars['String'];
+};
+
+export type AddResultMutationVariables = Exact<{
+  score: Scalars['Float'];
+}>;
+
+
+export type AddResultMutation = { __typename?: 'Mutation', addResult: { __typename?: 'Result', score: number } };
 
 export type User = {
   __typename?: 'User';
@@ -78,3 +88,13 @@ export type GetGreetQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetGreetQuery = { __typename?: 'Query', greet: { __typename?: 'Greet', msg: string, name: string } };
+
+export type GetRankingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRankingQuery = { __typename?: 'Query', ranking?: Array<{ __typename?: 'Result', score: number }> | null };
+
+export type GetTargetQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTargetQuery = { __typename?: 'Query', target: { __typename?: 'Target', angle: number, calcRes?: number | null, trigFunc?: TrigFunc | null } };

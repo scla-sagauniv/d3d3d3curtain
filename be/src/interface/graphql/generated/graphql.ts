@@ -58,7 +58,6 @@ export type Result = {
 export type Target = {
   __typename?: 'Target';
   angle: Scalars['Float'];
-  calcRes?: Maybe<Scalars['Float']>;
   trigFunc?: Maybe<TrigFunc>;
 };
 
@@ -237,16 +236,33 @@ export type QueryResolvers<
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
 > = {
   greet?: Resolver<ResolversTypes['Greet'], ParentType, ContextType>;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
   ranking?: Resolver<
     Maybe<Array<ResolversTypes['Result']>>,
     ParentType,
     ContextType
   >;
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
   results?: Resolver<
     Maybe<Array<ResolversTypes['Result']>>,
     ParentType,
     ContextType
   >;
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+=======
+  ranking?: Resolver<Maybe<Array<ResolversTypes['Result']>>, ParentType, ContextType>;
+  results?: Resolver<Maybe<Array<ResolversTypes['Result']>>, ParentType, ContextType>;
+>>>>>>> ed4e242b7e0a038ac57db67466f8a03f8f435801
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
   target?: Resolver<ResolversTypes['Target'], ParentType, ContextType>;
 };
 
@@ -265,12 +281,20 @@ export type TargetResolvers<
   ParentType extends ResolversParentTypes['Target'] = ResolversParentTypes['Target']
 > = {
   angle?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+<<<<<<< Updated upstream
   calcRes?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
   trigFunc?: Resolver<
     Maybe<ResolversTypes['TrigFunc']>,
     ParentType,
     ContextType
   >;
+<<<<<<< HEAD
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -279,6 +303,27 @@ export type UserResolvers<
   ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']
 > = {
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+=======
+<<<<<<< Updated upstream
+=======
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TrigFuncResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['TrigFunc'] = ResolversParentTypes['TrigFunc']
+> = {
+  calcCos?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  calcTan?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  calcsin?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  cos?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  sin?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  tan?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+>>>>>>> Stashed changes
+=======
+  trigFunc?: Resolver<Maybe<ResolversTypes['TrigFunc']>, ParentType, ContextType>;
+>>>>>>> ed4e242b7e0a038ac57db67466f8a03f8f435801
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -288,5 +333,9 @@ export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   Result?: ResultResolvers<ContextType>;
   Target?: TargetResolvers<ContextType>;
+<<<<<<< HEAD
   User?: UserResolvers<ContextType>;
+=======
+  TrigFunc?: TrigFuncResolvers<ContextType>;
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
 };

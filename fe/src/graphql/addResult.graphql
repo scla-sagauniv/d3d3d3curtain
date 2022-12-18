@@ -1,0 +1,5 @@
+mutation addResult($score: Float!) {
+  addResult(score: $score) {
+    score
+  }
+}
