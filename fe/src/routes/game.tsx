@@ -17,16 +17,35 @@ const GetTargetQueryDocument = gql`
     }
   }
 `;
+const AddResultMutationDocumet = gql`
+  mutation AddResult($score: Float!) {
+    addResult(score: $score) {
+      score
+    }
+  }
+`;
 export default function Game() {
   const [phase, setPhese] = createSignal<number>(0);
-  const [angle, setAngle] = createSignal<number>(0);
+  const [angle, setAngle] = createSignal<number>(-1);
   const [captureUrl, setCaptureUrl] = createSignal<string>("");
-  const [target, setTarget] = createSignal<Target>({ angle: 0 });
-
+  const [score, setScore] = createSignal<number>(-1);
+  const [target, setTarget] = createSignal<Target>({ angle: -1 });
   const [targetData] = newQuery<GetTargetQuery>(GetTargetQueryDocument);
   createEffect(() => {
     if (targetData()) {
       setTarget(targetData()!.target);
+    }
+  });
+  createEffect(() => {
+    if (target().angle !== -1 && angle() !== -1 && score() === -1) {
+      setScore(Math.abs(target().angle - angle()));
+      const [res] = newQuery<AddResultMutation>(
+        AddResultMutationDocumet,
+        () => ({
+          score: score(),
+        })
+      );
+      console.log(res()?.addResult.score);
     }
   });
 
@@ -44,7 +63,7 @@ export default function Game() {
         />
       </Match>
       <Match when={phase() === 2}>
-        <Result angle={angle()} score={0.9} captureUrl={captureUrl()} />
+        <Result angle={angle()} score={score()} captureUrl={captureUrl()} />
       </Match>
     </Switch>
   );
