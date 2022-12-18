@@ -49,7 +49,9 @@ export default function Game() {
         score: score(),
         target: target(),
         user: {
-          name: "hoge-た",
+          name: ["hoge-た", "fuga-た", "piyo-た"][
+            Math.floor(Math.random() * 3)
+          ],
         },
       };
       const [res] = newQuery<AddResultMutation>(

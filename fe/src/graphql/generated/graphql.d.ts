@@ -116,7 +116,7 @@ export type GetGreetQuery = { __typename?: 'Query', greet: { __typename?: 'Greet
 export type GetRankingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRankingQuery = { __typename?: 'Query', ranking?: Array<{ __typename?: 'Result', score: number }> | null };
+export type GetRankingQuery = { __typename?: 'Query', ranking?: Array<{ __typename?: 'Result', score: number, user: { __typename?: 'User', name: string } }> | null };
 
 export type GetTargetQueryVariables = Exact<{ [key: string]: never; }>;
 

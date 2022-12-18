@@ -10,6 +10,9 @@ const GetRankingQueryDocument = gql`
   query Query {
     ranking {
       score
+      user {
+        name
+      }
     }
   }
 `;
@@ -23,9 +26,18 @@ export default function ranking() {
   createEffect(() => {
     if (rankingData()) {
       setRanks([
-        { userName: "hoge-ﾀ", score: rankingData()!.ranking![0].score },
-        { userName: "fizz", score: rankingData()!.ranking![1].score },
-        { userName: "buzz", score: rankingData()!.ranking![2].score },
+        {
+          userName: rankingData()!.ranking![0].user.name,
+          score: rankingData()!.ranking![0].score,
+        },
+        {
+          userName: rankingData()!.ranking![1].user.name,
+          score: rankingData()!.ranking![1].score,
+        },
+        {
+          userName: rankingData()!.ranking![2].user.name,
+          score: rankingData()!.ranking![2].score,
+        },
       ]);
     }
   });

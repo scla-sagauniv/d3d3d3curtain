@@ -1,5 +1,8 @@
 query getRanking {
   ranking {
     score
+    user {
+      name
+    }
   }
 }
