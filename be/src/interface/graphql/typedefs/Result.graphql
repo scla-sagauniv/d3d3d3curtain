@@ -1,3 +1,21 @@
 type Result {
     score: Float!
+    user:User!
+    target:Target!
+}
+
+type User {
+    name: String!
+}
+
+
+
+input UserInput {
+    name: String!
+}
+
+input ResultInput {
+    score: Float!
+    user: UserInput!
+    target: TargetInput!
 }
