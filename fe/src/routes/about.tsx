@@ -8,7 +8,7 @@ export default function About() {
   };
   return (
     <>
-      <Detection capture={capture()}></Detection>
+      <Detection capture={capture()} setAngle={undefined}></Detection>
       <button onClick={click}>STOP</button>
     </>
   );

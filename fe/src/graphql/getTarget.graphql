@@ -1,0 +1,7 @@
+query getTarget {
+  target {
+    angle
+    calcRes
+    trigFunc
+  }
+}
