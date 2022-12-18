@@ -8,6 +8,7 @@ import {
   GetTargetQuery,
   AddResultMutation,
   Target,
+  ResultInput,
 } from "~/graphql/generated/graphql";
 
 const GetTargetQueryDocument = gql`
@@ -18,8 +19,8 @@ const GetTargetQueryDocument = gql`
   }
 `;
 const AddResultMutationDocumet = gql`
-  mutation AddResult($score: Float!) {
-    addResult(score: $score) {
+  mutation AddResult($resultinput: ResultInput!) {
+    addResult(resultinput: $resultinput) {
       score
     }
   }
@@ -37,15 +38,25 @@ export default function Game() {
     }
   });
   createEffect(() => {
-    if (target().angle !== -1 && angle() !== -1 && score() === -1) {
-      setScore(Math.abs(target().angle - angle()));
+    if (
+      target().angle !== -1 &&
+      angle() !== -1 &&
+      score() === -1 &&
+      phase() === 2
+    ) {
+      setScore(Math.trunc(Math.abs(target().angle - angle()) * 100) / 100);
+      const body: ResultInput = {
+        score: score(),
+        target: target(),
+        user: {
+          name: "hoge-た",
+        },
+      };
       const [res] = newQuery<AddResultMutation>(
         AddResultMutationDocumet,
-        () => ({
-          score: score(),
-        })
+        () => ({ resultinput: body })
       );
-      console.log(res()?.addResult.score);
+      console.log("res", res()?.addResult.score, body);
     }
   });
 
