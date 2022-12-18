@@ -1,14 +1,22 @@
-import {Result} from '../graphql/generated/graphql';
+import {Result, ResultInput} from '../graphql/generated/graphql';
 
 const results: Result[] = [
   {
-    score: 0,
+    score: 1000,
+    target: {
+      angle: 0,
+    },
+    user: {
+      name: 'unknown',
+    },
   },
 ];
 
-function addResult(score: number): Result {
+function addResult(resultinput: ResultInput): Result {
   const result: Result = {
-    score: score,
+    score: resultinput.score,
+    target: resultinput.target,
+    user: resultinput.user,
   };
   results.push(result);
   return results[results.length - 1];

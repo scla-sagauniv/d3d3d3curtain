@@ -26,7 +26,7 @@ export type Mutation = {
 
 
 export type MutationAddResultArgs = {
-  score: Scalars['Float'];
+  resultinput: ResultInput;
 };
 
 
@@ -49,6 +49,12 @@ export type Result = {
   user: User;
 };
 
+export type ResultInput = {
+  score: Scalars['Float'];
+  target: TargetInput;
+  user: UserInput;
+};
+
 export type Target = {
   __typename?: 'Target';
   angle: Scalars['Float'];
@@ -56,14 +62,36 @@ export type Target = {
   trigFunc?: Maybe<TrigFunc>;
 };
 
-export enum TrigFunc {
-  Cos = 'cos',
-  Sin = 'sin',
-  Tan = 'tan'
-}
+export type TargetInput = {
+  angle: Scalars['Float'];
+  target?: InputMaybe<TrigFuncInput>;
+};
+
+export type TrigFunc = {
+  __typename?: 'TrigFunc';
+  calcCos: Scalars['Float'];
+  calcTan: Scalars['Float'];
+  calcsin: Scalars['Float'];
+  cos: Scalars['String'];
+  sin: Scalars['String'];
+  tan: Scalars['String'];
+};
+
+export type TrigFuncInput = {
+  calcCos: Scalars['Float'];
+  calcTan: Scalars['Float'];
+  calcsin: Scalars['Float'];
+  cos: Scalars['String'];
+  sin: Scalars['String'];
+  tan: Scalars['String'];
+};
 
 export type User = {
   __typename?: 'User';
+  name: Scalars['String'];
+};
+
+export type UserInput = {
   name: Scalars['String'];
 };
 
