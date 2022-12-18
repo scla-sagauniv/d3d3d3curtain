@@ -1,10 +1,14 @@
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createSignal, Match, Switch } from "solid-js";
 import PlayWindow from "~/components/PlayWindow";
 import Question from "~/components/question";
 import Result from "~/components/result";
 import { gql } from "@solid-primitives/graphql";
 import { newQuery } from "~/utils/graphqlClient";
-import { GetTargetQuery, Target } from "~/graphql/generated/graphql";
+import {
+  GetTargetQuery,
+  AddResultMutation,
+  Target,
+} from "~/graphql/generated/graphql";
 
 const GetTargetQueryDocument = gql`
   query Query {
@@ -26,36 +30,22 @@ export default function Game() {
     }
   });
 
-  switch (phase()) {
-    case 0:
-      return <Question phase={phase()} setPhase={setPhese} target={target()} />;
-    case 1:
-      return (
-        <>
-          <PlayWindow
-            phase={phase()}
-            setPhase={setPhese}
-            setAngle={setAngle}
-            setCanvasUrl={setCaptureUrl}
-          />
-        </>
-      );
-    case 2:
-      return <Result angle={angle()} score={0.9} captureUrl={captureUrl()} />;
-  }
-  // return (
-  //   <>
-  //     {phase() === 0 && <Question phase={phase()} setPhase={setPhese} />}
-  //     {phase() === 1 && <PlayWindow phase={phase()} setPhase={setPhese} />}
-  //     {phase() === 2 && (
-  //       <Result
-  //         angle={30}
-  //         score={0.3}
-  //         captureUrl={
-  //           "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/A_cat_on_a_motorcycle_in_the_medina_of_Tunis_20171017_131525.jpg/1200px-A_cat_on_a_motorcycle_in_the_medina_of_Tunis_20171017_131525.jpg"
-  //         }
-  //       />
-  //     )}
-  //   </>
-  // );
+  return (
+    <Switch fallback={<p>{phase()} is between 5 and 10</p>}>
+      <Match when={phase() === 0}>
+        <Question phase={phase()} setPhase={setPhese} target={target()} />
+      </Match>
+      <Match when={phase() === 1}>
+        <PlayWindow
+          phase={phase()}
+          setPhase={setPhese}
+          setAngle={setAngle}
+          setCanvasUrl={setCaptureUrl}
+        />
+      </Match>
+      <Match when={phase() === 2}>
+        <Result angle={angle()} score={0.9} captureUrl={captureUrl()} />
+      </Match>
+    </Switch>
+  );
 }
