@@ -10,3 +10,16 @@ type TrigFunc {
   calcCos: Float!
   calcTan: Float!
 }
+
+input TargetInput {
+  target: TrigFuncInput
+  angle: Float!
+}
+input TrigFuncInput {
+  sin: String!
+  cos: String!
+  tan: String!
+  calcsin: Float!
+  calcCos: Float!
+  calcTan: Float!
+}
