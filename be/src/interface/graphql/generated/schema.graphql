@@ -11,6 +11,7 @@ type Mutation {
 type Query {
   greet: Greet!
   ranking: [Result!]
+  results: [Result!]
   target: Target!
 }
 

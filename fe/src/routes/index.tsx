@@ -8,9 +8,9 @@ export default function Home() {
           ピースの角度は何十度？？
         </p>
         <div class="flex flex-col mx-auto mt-11 w-36 h-auto justify-center">
-          <Home_Button name="ゲームスタート" url="/question" />
-          <Home_Button name="フリーモード" url="" />
-          <Home_Button name="ランキング" url="" />
+          <Home_Button name="ゲームスタート" url="/game" />
+          <Home_Button name="フリーモード" url="/freemode" />
+          <Home_Button name="ランキング" url="/ranking" />
         </div>
       </div>
     </main>

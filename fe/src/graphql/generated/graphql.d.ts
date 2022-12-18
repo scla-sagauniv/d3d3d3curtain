@@ -38,6 +38,7 @@ export type Query = {
   __typename?: 'Query';
   greet: Greet;
   ranking?: Maybe<Array<Result>>;
+  results?: Maybe<Array<Result>>;
   target: Target;
 };
 
@@ -62,6 +63,13 @@ export type TrigFunc = {
   tan: Scalars['String'];
 };
 
+export type AddResultMutationVariables = Exact<{
+  score: Scalars['Float'];
+}>;
+
+
+export type AddResultMutation = { __typename?: 'Mutation', addResult: { __typename?: 'Result', score: number } };
+
 export type ChangeNameMutationVariables = Exact<{
   name: Scalars['String'];
 }>;
@@ -73,3 +81,13 @@ export type GetGreetQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetGreetQuery = { __typename?: 'Query', greet: { __typename?: 'Greet', msg: string, name: string } };
+
+export type GetRankingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRankingQuery = { __typename?: 'Query', ranking?: Array<{ __typename?: 'Result', score: number }> | null };
+
+export type GetTargetQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTargetQuery = { __typename?: 'Query', target: { __typename?: 'Target', angle: number, calcRes?: number | null, trigFunc?: TrigFunc | null } };
