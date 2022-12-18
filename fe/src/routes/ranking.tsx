@@ -17,10 +17,11 @@ const GetRankingQueryDocument = gql`
   }
 `;
 export default function ranking() {
+
   const [ranks, setRanks] = createSignal([
-    { userName: "hoge-ﾀ", score: 0.064 },
-    { userName: "fizz", score: 0.078 },
-    { userName: "buzz", score: 0.1 },
+    { userName: "hoge-ﾀ", score: 0.064, question: "30"},
+    { userName: "fizz", score: 0.078,  question: "30"},
+    { userName: "buzz", score: 0.1,  question: "30"},
   ]);
   const [rankingData] = newQuery<GetRankingQuery>(GetRankingQueryDocument);
   createEffect(() => {
@@ -29,20 +30,21 @@ export default function ranking() {
         {
           userName: rankingData()!.ranking![0].user.name,
           score: rankingData()!.ranking![0].score,
+          question: "30"
         },
         {
           userName: rankingData()!.ranking![1].user.name,
           score: rankingData()!.ranking![1].score,
+          question: "30"
         },
         {
           userName: rankingData()!.ranking![2].user.name,
           score: rankingData()!.ranking![2].score,
+          question: "30"
         },
       ]);
     }
   });
-
-  const hoge = ["mt-8", ""];
 
   return (
     <main class="mx-auto w-full h-full bg-bg_yellow">
@@ -52,17 +54,19 @@ export default function ranking() {
         </p>
         {/* ランキングの要素を生成 */}
         <div class="flex flex-col mx-auto w-3/4x h-auto justify-center">
-          <div class="text-font_blue not-italic font-normal text-5xl text-left grid grid-cols-3 grid-rows-3">
+          
             <For each={ranks()}>
               {(rank, i) => (
                 <>
-                  <div class="mt-8 hover:">{i() + 1}位:</div>
-                  <div class="mt-8">{rank.score}°</div>
-                  <div class="mt-8">{rank.userName}</div>
+                  <div class="hover:after:content-['こんばんは'] after:text-amber-300 after:text-3xl relative after:absolute after:-right-16 after:bottom-0 after:z-10 text-font_blue not-italic font-normal text-5xl text-left grid grid-cols-3">
+                    <div class="mt-8">{i() + 1}位:</div>
+                    <div class="mt-8">{rank.userName}</div>
+                    <div class="mt-8">{rank.score}°</div>
+                </div>
                 </>
               )}
             </For>
-          </div>
+          
         </div>
       </div>
       <a
