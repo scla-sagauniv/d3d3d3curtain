@@ -2,10 +2,9 @@ import { createEffect, createSignal } from "solid-js";
 import PlayWindow from "~/components/PlayWindow";
 import Question from "~/components/question";
 import Result from "~/components/result";
-import { gql, createGraphQLClient } from "@solid-primitives/graphql";
+import { gql } from "@solid-primitives/graphql";
+import { newQuery } from "~/utils/graphqlClient";
 import { GetTargetQuery, Target } from "~/graphql/generated/graphql";
-
-const newQuery = createGraphQLClient("http://localhost:4000/api/graphql");
 
 const GetTargetQueryDocument = gql`
   query Query {
