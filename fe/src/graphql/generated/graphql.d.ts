@@ -26,7 +26,7 @@ export type Mutation = {
 
 
 export type MutationAddResultArgs = {
-  score: Scalars['Float'];
+  resultinput: ResultInput;
 };
 
 
@@ -49,12 +49,26 @@ export type Result = {
   user: User;
 };
 
+export type ResultInput = {
+  score: Scalars['Float'];
+  target: TargetInput;
+  user: UserInput;
+};
+
 export type Target = {
   __typename?: 'Target';
   angle: Scalars['Float'];
   trigFunc?: Maybe<TrigFunc>;
 };
 
+<<<<<<< HEAD
+export type TargetInput = {
+  angle: Scalars['Float'];
+  target?: InputMaybe<TrigFuncInput>;
+};
+
+=======
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
 export type TrigFunc = {
   __typename?: 'TrigFunc';
   calcCos: Scalars['Float'];
@@ -64,6 +78,27 @@ export type TrigFunc = {
   sin: Scalars['String'];
   tan: Scalars['String'];
 };
+<<<<<<< HEAD
+
+export type TrigFuncInput = {
+  calcCos: Scalars['Float'];
+  calcTan: Scalars['Float'];
+  calcsin: Scalars['Float'];
+  cos: Scalars['String'];
+  sin: Scalars['String'];
+  tan: Scalars['String'];
+};
+
+export type User = {
+  __typename?: 'User';
+  name: Scalars['String'];
+};
+
+export type UserInput = {
+  name: Scalars['String'];
+};
+=======
+>>>>>>> dbc257a3cd83274f07108d40205e97e18dfda0df
 
 export type AddResultMutationVariables = Exact<{
   score: Scalars['Float'];
@@ -71,11 +106,6 @@ export type AddResultMutationVariables = Exact<{
 
 
 export type AddResultMutation = { __typename?: 'Mutation', addResult: { __typename?: 'Result', score: number } };
-
-export type User = {
-  __typename?: 'User';
-  name: Scalars['String'];
-};
 
 export type ChangeNameMutationVariables = Exact<{
   name: Scalars['String'];
