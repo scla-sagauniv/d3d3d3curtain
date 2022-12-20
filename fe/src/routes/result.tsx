@@ -26,7 +26,10 @@ export default function Result(props: Props) {
   return (
     <>
       <main class="mx-auto w-full h-full bg-white">
-        <img src={props.captureUrl}></img>
+        <img
+          src={props.captureUrl}
+          style={{ width: "100%", height: "100%", "object-fit": "cover" }}
+        ></img>
         <a class={`${resultWindowClasses.join(" ")}`}>
           {props.angle}°
           <br />
